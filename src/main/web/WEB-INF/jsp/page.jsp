@@ -3,7 +3,7 @@
     $(function () {
         $("li>a").click(function () {
             var no=$(this).attr("no");
-            var url=location.href.split("?")[0]+"?pageNum="+no+"&pageSize=3";
+            var url=location.href.split("Num")[0]+"Num="+no+"&pageSize=3";
             location.href =url;
         })
     })

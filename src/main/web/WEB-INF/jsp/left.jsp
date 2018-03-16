@@ -3,29 +3,16 @@
 <%@include file="basic.jsp"%>
 
 <div class="col-md-2">
-    <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" id="productList">
-                <span>
-                <a href="${pageContext.request.contextPath}/product/toProduct?pageNum=1&pageSize=3">
+                <a href="${pageContext.request.contextPath}/product/toProduct?pageNum=1&pageSize=3" class="btn btn-primary btn-lg active" role="button">
                     商品列表
                 </a>
-                    </span>
-            </li>
+
         <c:if test="${loginUser.id==1}">
-            <li role="presentation" id="userList">
-                <span>
-                <a href="${pageContext.request.contextPath}/user/toUserList?pageNum=1&pageSize=3">
+                <a href="${pageContext.request.contextPath}/user/toUserList?pageNum=1&pageSize=3" class="btn btn-primary btn-lg active" role="button">
                     用户管理
                 </a>
-                    </span>
-            </li>
-            <li role="presentation" id="recordList">
-                <span>
-                <a href="${pageContext.request.contextPath}/sale/toSale?pageNum=1&pageSize=3">
+                <a href="${pageContext.request.contextPath}/sale/toSale?pageNum=1&pageSize=3" class="btn btn-primary btn-lg active" role="button">
                     销售记录
                 </a>
-                    </span>
-            </li>
         </c:if>
-    </ul>
 </div>

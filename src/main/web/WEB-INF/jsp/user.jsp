@@ -21,21 +21,17 @@
                 $.get("${pageContext.request.contextPath}/user/queryUserById",
                     {"id":id},function (data) {
                         $("#updateUserName").val(data.userName);
-                        var status = data.status;
-                        if(status==0) {
-                            $("#updateStatus0").attr("checked",true);
-                        }else{
-                            $("#updateStatus1").attr("checked",true);
-                        }
+                        $("input[name='status']").prop("checked",false);
+                        $("input[name='status'][value='"+data.status+"']").prop("checked",true)
+                        var status = $('input[name="status"]:checked').val();
+                        $("#status").val(status);
                         $("#updateUserId").val(data.id);
                         $("#updateUserModal").modal("show");
-                })
+                    })
             })
-
             //修改用户保存按钮
             $("#updateUserSaveButton").click(function () {
                 var user=$("#updateUserForm").serialize();
-                alert(user);
                 var url="${pageContext.request.contextPath}/user/updateUser";
                 $.post(url,user,function (data) {
                     alert(data.msg);
@@ -139,7 +135,6 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">修改状态</h4>
             </div>
             <div class="modal-body">
@@ -152,16 +147,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label  class="col-sm-3 control-label">用户状态：</label>
-                        <div class="col-sm-8">
-                            <input type="radio" id="updateStatus1" name="status" value="1">正常
-                            <input type="radio" id="updateStatus0" name="status" value="0">冻结
+                        <label  class="col-sm-3 control-label">变更状态：</label>
+                        <div class="radio col-sm-8">
+                            <label style="color: red">
+                                <input type="radio" name="status" value="0">冻结
+                            </label>
+                            <label style="color:green">
+                                <input type="radio" name="status" value="1">正常
+                            </label>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="closeUpdate">关闭</button>
                 <button type="button" class="btn btn-primary" id="updateUserSaveButton">保存</button>
             </div>
         </div><!-- /.modal-content -->

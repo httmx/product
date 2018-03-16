@@ -30,19 +30,15 @@ public class UsersController {
     public String login(Users users, HttpSession httpSession, Model model) {
         System.out.println(users);
         Users loginUser = usersService.UsersLogin(users);
-        if(loginUser!=null){
-            if (loginUser.getStatus()==1) {
-                httpSession.setAttribute("loginUser", loginUser);
-                return "main";
-            }
-            if (loginUser.getStatus() == 0) {
-               model.addAttribute("message","此用户已冻结");
-                return "index";
-            }
-            model.addAttribute("message", "用户名密码错误");
+        if (loginUser.getStatus()==1) {
+            httpSession.setAttribute("loginUser", loginUser);
+            return "main";
+        }
+        if (loginUser.getStatus() == 0) {
+            httpSession.setAttribute("message","此用户已冻结");
             return "index";
         }
-        model.addAttribute("用户名或密码不存在");
+        model.addAttribute("message", "用户名密码错误");
         return "index";
     }
 

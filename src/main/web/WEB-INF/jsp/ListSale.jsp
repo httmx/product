@@ -14,7 +14,12 @@
     <%@include file="basic.jsp"%>
 </head>
 <script type="text/javascript">
-
+    $(function () {
+        $("#querySaleButton").click(function () {
+            var Sale=$("#querySale").val();
+          location.href="${pageContext.request.contextPath}/sale/querySale?title="+Sale+"&pageNum=1&pageSize=3";
+        })
+    })
 </script>
 <body>
 <div class="container">
@@ -29,12 +34,10 @@
             <div class="col-md-2 col-md-offset-8">
                 <div class="col-lg-16">
                     <div class="input-group">
-                        <form action="${pageContext.request.contextPath}/sale/querySale?pageNum=1&pageSize=3" method="post">
                         <input type="text" class="form-control" id="querySale" name="title" >
                             <span class="input-group-btn">
-                         <button class="btn btn-default" type="submit" >搜索</button>
+                         <button class="btn btn-default" type="button" id="querySaleButton" >搜索</button>
                             </span>
-                        </form>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
             </div><!-- /.row -->
